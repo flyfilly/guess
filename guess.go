@@ -4,11 +4,13 @@ package guess
 type Node struct {
 	left  *Node
 	value int
+	used  bool
 	right *Node
 }
 
 func (node *Node) search(data int) bool {
-	if data == node.value {
+	if data == node.value && !node.used {
+		node.used = true
 		return true
 	} else if data <= node.value && node.left != nil {
 		return node.left.search(data)
@@ -23,13 +25,13 @@ func (node *Node) insert(data int) {
 		return
 	} else if data <= node.value {
 		if node.left == nil {
-			node.left = &Node{value: data, left: nil, right: nil}
+			node.left = &Node{value: data, used: false, left: nil, right: nil}
 		} else {
 			node.left.insert(data)
 		}
 	} else {
 		if node.right == nil {
-			node.right = &Node{value: data, left: nil, right: nil}
+			node.right = &Node{value: data, used: false, left: nil, right: nil}
 		} else {
 			node.right.insert(data)
 		}
