@@ -1,20 +1,10 @@
 package guess
 
-import (
-	"io"
-)
-
 // Node is used to construct a BST
 type Node struct {
 	left  *Node
 	value int
 	right *Node
-}
-
-func (node *Node) print(w io.Writer, ns int, ch rune) {
-	if node == nil {
-		return
-	}
 }
 
 func (node *Node) search(data int) bool {
